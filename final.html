@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ACCESS NODE // LOGIN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ---------- CRT GLOBAL ---------- */
+body {
+    background:#000;
+    color:#00ff66;
+    font-family:"Courier New", monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    text-shadow:0 0 6px rgba(0,255,102,0.6);
+    animation:flicker 0.18s infinite;
+}
+
+/* Scanlines overlay */
+.scanlines {
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,0,0.12),
+        rgba(0,255,0,0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.18;
+    z-index:999;
+    mix-blend-mode:screen;
+}
+
+@keyframes flicker {
+    0% { opacity:1; }
+    50% { opacity:0.94; }
+    100% { opacity:1; }
+}
+
+/* ---------- BOX ---------- */
+.box {
+    background:rgba(0,20,0,0.6);
+    padding:30px;
+    border-radius:8px;
+    border:1px solid #00ff66;
+    width:340px;
+    box-shadow:0 0 20px rgba(0,255,102,0.4);
+    backdrop-filter:blur(3px);
+    text-align:center;
+}
+
+/* Header */
+.box h2 {
+    margin-bottom:20px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+/* --------- Inputs --------- */
+input {
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    background:#000;
+    border:1px solid #00ff66;
+    color:#00ff66;
+    border-radius:4px;
+    font-family:"Courier New", monospace;
+    text-shadow:0 0 6px rgba(0,255,102,0.4);
+}
+
+button {
+    margin-top:15px;
+    padding:10px;
+    width:100%;
+    background:#00ff66;
+    border:none;
+    border-radius:4px;
+    color:#001100;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    cursor:pointer;
+    box-shadow:0 0 14px rgba(0,255,102,0.6);
+}
+button:hover {
+    background:#00e65c;
+}
+
+/* ---------- CONSOLE BOX ---------- */
+.console {
+    background:rgba(0,20,0,0.35);
+    border:1px solid #00ff66;
+    padding:15px;
+    margin-top:20px;
+    height:150px;
+    overflow-y:auto;
+    border-radius:6px;
+    font-size:0.9rem;
+}
+
+.console-line { margin-bottom:6px; }
+.tag { color:#00ffaa; }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<div class="box">
+  <h2>ACCESS LOGIN</h2>
+
+  <input type="text" id="u" placeholder="Username">
+  <input type="password" id="p" placeholder="Password">
+  <button onclick="login()">INITIALIZE</button>
+
+  <div class="console" id="console">
+      <div class="console-line"><span class="tag">[SYS]</span> Awaiting authentication...</div>
+  </div>
+</div>
+
+<script>
+function pushLine(text) {
+    const c = document.getElementById("console");
+    let div = document.createElement("div");
+    div.className = "console-line";
+    div.innerHTML = text;
+    c.appendChild(div);
+    c.scrollTop = c.scrollHeight;
+}
+
+function login() {
+    let u = document.getElementById("u").value.trim();
+    let p = document.getElementById("p").value.trim();
+
+    pushLine("<span class='tag'>[AUTH]</span> Processing credentials…");
+
+    // SQL Injection detection
+    if (p.includes("'") && p.includes("1=1") && p.toLowerCase().includes("or")) {
+        
+        setTimeout(() => {
+            pushLine("<span class='tag'>[AUTH]</span> Bypass signature detected.");
+        }, 600);
+
+        setTimeout(() => {
+            pushLine("<span class='tag'>[ACCESS]</span> Validation layer compromised.");
+        }, 1200);
+
+        setTimeout(() => {
+            pushLine("<span class='tag'>[GRANTED]</span> Access Granted. Opening secured node…");
+        }, 1800);
+
+        setTimeout(() => {
+            window.location.href = "task4_unlocked.html";
+        }, 2600);
+
+    } else {
+        setTimeout(() => {
+            pushLine("<span class='tag'>[DENIED]</span> Authorization failed.");
+        }, 600);
+    }
+}
+</script>
+
+</body>
+</html>

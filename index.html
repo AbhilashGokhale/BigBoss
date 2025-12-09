@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BIGBOSS MAINFRAME // ACCESS NODE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+    /* ---------------- CRT GLOBAL ---------------- */
+
+    body {
+        background: #000;
+        color: #00ff66;
+        font-family: "Courier New", monospace;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        text-shadow: 0 0 6px rgba(0,255,102,0.6);
+    }
+
+    /* CRT Scanline overlay */
+    .scanlines {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        background: repeating-linear-gradient(
+            to bottom,
+            rgba(0,255,0,0.12),
+            rgba(0,255,0,0.12) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+        z-index: 999;
+        opacity: 0.15;
+        mix-blend-mode: screen;
+    }
+
+    /* CRT Flicker */
+    @keyframes flicker {
+        0% { opacity: 1; }
+        50% { opacity: 0.92; }
+        100% { opacity: 1; }
+    }
+
+    body {
+        animation: flicker 0.15s infinite;
+    }
+
+    /* ---------------- HEADER ---------------- */
+
+    h1 {
+        text-align: center;
+        font-size: 1.7rem;
+        margin-top: 60px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .subtitle {
+        text-align: center;
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+        opacity: 0.85;
+    }
+
+    /* ---------------- PANEL BOX ---------------- */
+
+    .panel {
+        width: min(90%, 600px);
+        margin: 0 auto;
+        border: 2px solid #00ff66;
+        padding: 20px;
+        border-radius: 6px;
+        box-shadow: 0 0 15px rgba(0,255,100,0.3);
+    }
+
+    /* ---------------- CONSOLE ---------------- */
+
+    .console {
+        background: rgba(0,20,0,0.6);
+        border: 1px solid #00ff66;
+        padding: 12px;
+        height: 180px;
+        overflow-y: auto;
+        font-size: 0.9rem;
+    }
+
+    .console-line {
+        margin-bottom: 6px;
+        white-space: pre-wrap;
+    }
+
+    .tag { color: #00ff90; }
+
+    /* ---------------- BUTTON ---------------- */
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        padding-right: 0px;
+        margin-top: 22px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-align: center;
+        background: #00ff66;
+        color: #003300;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 4px;
+        letter-spacing: 2px;
+        box-shadow: 0 0 12px rgba(0,255,102,0.6);
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #00e65c;
+        box-shadow: 0 0 20px rgba(0,255,102,0.9);
+    }
+
+    .btn:active {
+        transform: scale(0.97);
+    }
+
+    /* Typing animation */
+    .type {
+        overflow: hidden;
+        border-right: 2px solid #00ff66;
+        white-space: nowrap;
+        width: 0;
+        animation: typing 2s steps(40, end) forwards, caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes caret {
+        50% { border-color: transparent; }
+    }
+
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<h1>BIGBOSS MAINFRAME</h1>
+<p class="subtitle type">Survival Protocol Activated. Unauthorized Bot Detected.</p>
+
+<div class="panel">
+
+    <div class="console" id="console">
+        <div class="console-line"><span class="tag">[BOOT]</span> Initializing CRT systems…</div>
+        <div class="console-line"><span class="tag">[LINK]</span> Establishing secure uplink…</div>
+        <div class="console-line"><span class="tag">[BIGBOSS]</span> You're online, operative.</div>
+        <div class="console-line"><span class="tag">[BIGBOSS]</span> KillerBot has activated autonomous tracking mode.</div>
+        <div class="console-line"><span class="tag">[WARNING]</span> Override fragments scattered. Retrieval required.</div>
+    </div>
+
+    <a href="task1.html" class="btn">BEGIN TASK 1</a>
+</div>
+
+
+<script>
+    const c = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 1800);
+        const d = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 2800);
+        const e = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 3800);
+        const f = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 4800);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mainframe File Directory</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* CRT GLOBAL THEME */
+body {
+    background:#000;
+    color:#00ff66;
+    font-family:"Courier New", monospace;
+    margin:0;
+    padding:20px;
+    text-shadow:0 0 6px rgba(0,255,102,0.6);
+    animation:flicker 0.18s infinite;
+}
+
+/* Flicker effect */
+@keyframes flicker {
+    0% { opacity:1; }
+    50% { opacity:0.94; }
+    100% { opacity:1; }
+}
+
+/* Scanlines */
+.scanlines {
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,0,0.12),
+        rgba(0,255,0,0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.16;
+    z-index:999;
+    mix-blend-mode:screen;
+}
+
+/* Header */
+h1 {
+    text-align:center;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    margin-bottom:25px;
+}
+
+/* Table-style list */
+.file-list {
+    width:100%;
+    max-width:650px;
+    margin:0 auto;
+    border:1px solid #00ff66;
+    border-radius:6px;
+    padding:15px;
+    background:rgba(0,20,0,0.5);
+}
+
+.file-entry {
+    padding:12px 0;
+    border-bottom:1px solid #004d1a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.file-entry:last-child {
+    border-bottom:none;
+}
+
+button {
+    background:#00ff66;
+    border:none;
+    color:#001100;
+    padding:6px 12px;
+    border-radius:4px;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-left:10px;
+}
+button:hover {
+    background:#00e657;
+}
+
+/* Console */
+.console {
+    width:100%;
+    max-width:650px;
+    margin:20px auto;
+    border:1px solid #00ff66;
+    background:rgba(0,20,0,0.35);
+    padding:15px;
+    height:150px;
+    overflow-y:auto;
+    border-radius:6px;
+}
+.console-line { margin-bottom:6px; }
+.tag { color:#00ffaa; }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<h1>MAINFRAME FILE DIRECTORY</h1>
+
+<div class="file-list">
+
+    <!-- UNPROTECTED PDF -->
+    <div class="file-entry">
+        <span>PDF 1</span>
+        <div>
+            <button onclick="viewFile('task2_hidden.pdf')">VIEW</button>
+            <button onclick="downloadFile('task2_hidden.pdf')">DOWNLOAD</button>
+        </div>
+    </div>
+
+    <!-- PROTECTED PDF -->
+    <div class="file-entry">
+        <span>task3_document.pdf</span>
+        <div>
+            <button onclick="viewFile('task2_hidden.pdf')">VIEW</button>
+            <button onclick="downloadFile('task2_hidden.pdf')">DOWNLOAD</button>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="console" id="console">
+    <div class="console-line"><span class="tag">[SYS]</span> Directory interface loaded…</div>
+</div>
+
+<script>
+function push(text){
+    const c = document.getElementById("console");
+    let d = document.createElement("div");
+    d.className="console-line";
+    d.innerHTML=text;
+    c.appendChild(d);
+    c.scrollTop = c.scrollHeight;
+}
+
+function viewFile(file) {
+    push("<span class='tag'>[OPEN]</span> Opening " + file + "…");
+    window.open(file, "_blank");
+}
+
+function downloadFile(file) {
+    push("<span class='tag'>[DL]</span> Downloading " + file + "…");
+    const a = document.createElement("a");
+    a.href = file;
+    a.download = file;
+    a.click();
+}
+
+function unlockProtected(file, pass){
+    let userPass = prompt("Enter PDF Password:");
+    if(userPass === pass){
+        push("<span class='tag'>[AUTH]</span> Password accepted. Opening " + file + "…");
+        setTimeout(()=> window.open(file, "_blank"), 700);
+    } else {
+        push("<span class='tag'>[DENIED]</span> Incorrect password for " + file);
+    }
+}
+
+function unlockProtectedDL(file, pass){
+    let userPass = prompt("Enter PDF Password:");
+    if(userPass === pass){
+        push("<span class='tag'>[AUTH]</span> Password accepted. Downloading " + file + "…");
+        const a = document.createElement("a");
+        a.href = file;
+        a.download = file;
+        setTimeout(()=> a.click(), 700);
+    } else {
+        push("<span class='tag'>[DENIED]</span> Incorrect password for " + file);
+    }
+}
+</script>
+
+</body>
+</html>

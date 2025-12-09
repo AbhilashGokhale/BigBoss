@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KillerBot Deactivation Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* CRT GLOBAL THEME */
+body {
+    background:#000;
+    color:#00ff66;
+    font-family:"Courier New", monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    text-shadow:0 0 6px rgba(0,255,102,0.6);
+    animation:flicker 0.18s infinite;
+}
+
+/* Scanlines */
+.scanlines {
+    pointer-events:none;
+    position:fixed;
+    inset:0;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,0,0.12),
+        rgba(0,255,0,0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity:0.16;
+    z-index:999;
+    mix-blend-mode:screen;
+}
+
+/* Flicker */
+@keyframes flicker {
+    0% { opacity:1; }
+    50% { opacity:0.94; }
+    100% { opacity:1; }
+}
+
+/* Main box */
+.box {
+    background:rgba(0,20,0,0.6);
+    padding:30px;
+    width:420px;
+    border-radius:8px;
+    border:1px solid #00ff66;
+    box-shadow:0 0 20px rgba(0,255,102,0.4);
+    backdrop-filter:blur(3px);
+}
+
+/* Console window */
+.console {
+    background:rgba(0,20,0,0.35);
+    border:1px solid #00ff66;
+    padding:15px;
+    height:180px;
+    overflow-y:auto;
+    border-radius:6px;
+    font-size:0.9rem;
+    margin-bottom:20px;
+}
+
+.console-line {
+    margin-bottom:6px;
+}
+
+.tag {
+    color:#00ffaa;
+}
+
+/* Input */
+input {
+    width: 408px;
+    padding:12px;
+    padding-right: 0px;
+    margin-top:12px;
+    background:#000;
+    color:#00ff66;
+    border:1px solid #00ff66;
+    border-radius:6px;
+    font-size:1.2rem;
+    text-align:center;
+}
+
+/* Button */
+button {
+    margin-top:15px;
+    padding:10px;
+    background:#00ff66;
+    color:#001100;
+    width:100%;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    font-size:1.1rem;
+    cursor:pointer;
+    letter-spacing:2px;
+    box-shadow:0 0 14px rgba(0,255,102,0.6);
+}
+button:hover {
+    background:#00e657;
+}
+
+/* Message */
+#msg {
+    margin-top:12px;
+    font-size:1rem;
+    min-height:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanlines"></div>
+
+<div class="box">
+
+  <div class="console" id="console">
+      <!-- Boot logs will appear here dynamically -->
+  </div>
+
+  <input id="code" maxlength="5" placeholder="-----" style="display:none;">
+  <button id="btn" onclick="check()" style="display:none;">DEACTIVATE</button>
+
+  <div id="msg"></div>
+
+</div>
+
+<script>
+function pushLine(text) {
+    const c = document.getElementById("console");
+    let div = document.createElement("div");
+    div.className = "console-line";
+    div.innerHTML = text;
+    c.appendChild(div);
+    c.scrollTop = c.scrollHeight;
+}
+
+/* Boot sequence */
+setTimeout(() => pushLine("<span class='tag'>[BOOT]</span> Initializing override console…"), 300);
+setTimeout(() => pushLine("<span class='tag'>[SYS]</span> Establishing secure uplink…"), 900);
+setTimeout(() => pushLine("<span class='tag'>[CORE]</span> Connecting to KillerBot neural lattice…"), 1500);
+setTimeout(() => pushLine("<span class='tag'>[WARN]</span> Autonomous targeting still active…"), 2100);
+setTimeout(() => pushLine("<span class='tag'>[BIGBOSS]</span> Operative, enter final override code to disable the bot."), 2700);
+setTimeout(() => pushLine("<span class='tag'>[SYS]</span> Awaiting input…"), 3300);
+
+setTimeout(() => {
+    document.getElementById("code").style.display = "block";
+    document.getElementById("btn").style.display = "block";
+}, 3400);
+
+
+/* Passcode Logic */
+function check() {
+  let c = document.getElementById("code").value.trim().toUpperCase();
+
+  if (c === "SHIFT") {
+
+    pushLine("<span class='tag'>[AUTH]</span> Override code accepted.");
+    setTimeout(() => pushLine("<span class='tag'>[SYS]</span> Disabling targeting systems…"), 700);
+    setTimeout(() => pushLine("<span class='tag'>[SYS]</span> Powering down locomotion cores…"), 1400);
+    setTimeout(() => pushLine("<span class='tag'>[SYS]</span> Killing autonomous routines…"), 2000);
+    setTimeout(() => pushLine("<span class='tag'>[GRANTED]</span> SYSTEM SHUTDOWN COMPLETE."), 2600);
+
+    setTimeout(() => {
+        document.getElementById("msg").innerHTML =
+        "<span style='color:#00ff66; font-size:1.2rem;'>✔ KILLERBOT DEACTIVATED</span>";
+    }, 3000);
+
+  } else {
+    pushLine("<span class='tag'>[DENIED]</span> Invalid code. Bot still active.");
+    document.getElementById("msg").innerHTML =
+      "<span style='color:#ff4444'>✖ WRONG CODE</span>";
+  }
+}
+</script>
+
+</body>
+</html>

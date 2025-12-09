@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CHORE 2 // QR EXTRACTION NODE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ---------- CRT GLOBAL THEMING ---------- */
+body {
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    text-shadow: 0 0 6px rgba(0,255,102,0.6);
+}
+
+/* Scanline overlay */
+.scanlines {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,255,0,0.12),
+        rgba(0,255,0,0.12) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index: 999;
+    opacity: 0.15;
+    mix-blend-mode: screen;
+}
+
+/* Flicker effect */
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.94; }
+    100% { opacity: 1; }
+}
+body { animation: flicker 0.18s infinite; }
+
+/* Title */
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Panel box */
+.panel {
+    width: min(92%, 600px);
+    margin: 0 auto;
+    border: 2px solid #00ff66;
+    padding: 22px;
+    margin-top: 30px;
+    border-radius: 6px;
+}
+
+/* QR Container */
+.qr-box {
+    width: 100%;
+    padding: 15px;
+    padding-right: 0px;
+    border: 1px dashed #00ff66;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.qr-box img {
+    width: 240px;
+    max-width: 80%;
+    filter: drop-shadow(0 0 10px #00ff66);
+}
+
+/* Button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    padding-right: 0px;
+    text-align: center;
+    background: #00ff66;
+    color: #003300;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+    border-radius: 4px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    box-shadow: 0 0 12px rgba(0,255,102,0.6);
+}
+
+.btn:hover { background: #00cc55; }
+
+/* Console */
+.console {
+    background: rgba(0,20,0,0.55);
+    border: 1px solid #00ff66;
+    padding: 12px;
+    padding-right: 0px;
+    height: 150px;
+    overflow-y: auto;
+    margin-top: 22px;
+    border-radius: 6px;
+}
+
+.console-line { margin-bottom: 6px; }
+.tag { color: #00ffaa; }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<h1>CHORE 2 // QR EXTRACTION NODE</h1>
+
+<div class="panel">
+
+    <p>
+        The Instagram clue has led you here.<br>
+        Your next fragment is unlocked<br><br>
+        <strong>Scan the QR code</strong>
+    </p>
+
+    <div class="qr-box">
+        <img src="qr_task2.png" alt="QR Code">
+       <!--  <p style="opacity:0.7;">(Use your device camera to scan OR click 'Process Scan')</p>-->
+    </div>
+
+   <!--  <a id="scanBtn" class="btn">PROCESS SCAN</a>-->
+
+    <div class="console" id="console">
+        <div class="console-line"><span class="tag">[SYS]</span> Standing by for QR scan...</div>
+    </div>
+</div>
+
+<!-- Hidden FLAG letter for final code -->
+<!-- FLAG: H -->
+
+<script>
+document.getElementById("scanBtn").addEventListener("click", () => {
+    const c = document.getElementById("console");
+
+    let l1 = document.createElement("div");
+    l1.className = "console-line";
+    l1.innerHTML = "<span class='tag'>[SCAN]</span> Analyzing QR image…";
+    c.appendChild(l1);
+
+    setTimeout(() => {
+        let l2 = document.createElement("div");
+        l2.className = "console-line";
+        l2.innerHTML = "<span class='tag'>[DECODE]</span> Payload integrity verified.";
+        c.appendChild(l2);
+        c.scrollTop = c.scrollHeight;
+    }, 900);
+
+    setTimeout(() => {
+        let l3 = document.createElement("div");
+        l3.className = "console-line";
+        l3.innerHTML = "<span class='tag'>[DOWNLOAD]</span> File ready. Opening task2_hidden.pdf…";
+        c.appendChild(l3);
+        c.scrollTop = c.scrollHeight;
+
+        // Trigger file download
+        window.location.href = 'task2_hidden.pdf';
+
+    }, 1600);
+});
+</script>
+
+</body>
+</html>
