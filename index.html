@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>BIGBOSS MAINFRAME // ACCESS NODE</title>
+<title>BIGBOSS // ACCESS NODE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -147,8 +147,8 @@
 
 <div class="scanlines"></div>
 
-<h1>BIGBOSS MAINFRAME</h1>
-<p class="subtitle type">Survival Protocol Activated. Unauthorized Bot Detected.</p>
+<h1>BIGBOSS</h1>
+<p class="subtitle type">Survival Protocol Activated. Killer Bot Detected.</p>
 
 <div class="panel">
 
@@ -160,16 +160,18 @@
         <div class="console-line"><span class="tag">[WARNING]</span> Override fragments scattered. Retrieval required.</div>
     </div>
 
-    <a href="task1.html" class="btn">BEGIN TASK 1</a>
+    <a href="task1.html" class="btn">BEGIN TASK</a>
 </div>
 
-
+V
 <script>
+
+
     const c = document.getElementById("console");
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
-        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Robot is behind you…";
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 1800);
@@ -177,7 +179,7 @@
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
-        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Connecting with Server...";
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 2800);
@@ -185,7 +187,7 @@
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
-        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Checking for your input...";
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 3800);
@@ -193,10 +195,29 @@
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
-        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation…";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation...";
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 4800);
+
+        standbyLoop = setInterval(() => {
+
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Checking for your input...";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 3800);
+        const f = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[SYS]</span> Standing by for your first operation...";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 4800);
+    }, 4000); // every 4 seconds
 </script>
 
 </body>
