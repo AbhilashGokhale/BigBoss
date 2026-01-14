@@ -270,7 +270,7 @@ const c = document.getElementById("console");
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 1800);
-        const d = document.getElementById("console");
+
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
@@ -278,8 +278,6 @@ const c = document.getElementById("console");
         c.appendChild(el);
         c.scrollTop = c.scrollHeight;
     }, 2800);
-
-            const d = document.getElementById("console");
     setTimeout(() => {
         const el = document.createElement("div");
         el.className = "console-line";
@@ -289,7 +287,7 @@ const c = document.getElementById("console");
     }, 5000);
 
 function viewFile(file) {
-    push("<span class='tag'>[OPEN]</span> Opening " + file + "… ( Find 7 digit numeric and 6 digit alphanumeric password");
+    push("<span class='tag'>[OPEN]</span> Opening " + file + "… ( Find 7 digit numeric and 6 digit alphanumeric password )");
     window.open(file, "_blank");
 }
 
