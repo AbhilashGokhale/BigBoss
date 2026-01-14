@@ -279,8 +279,17 @@ const c = document.getElementById("console");
         c.scrollTop = c.scrollHeight;
     }, 2800);
 
+            const d = document.getElementById("console");
+    setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "console-line";
+        el.innerHTML = "<span class='tag'>[BIGBOSS]</span>If you get only 3 letters then repead one letter and add two spaces at end to get 6 charecters";
+        c.appendChild(el);
+        c.scrollTop = c.scrollHeight;
+    }, 5000);
+
 function viewFile(file) {
-    push("<span class='tag'>[OPEN]</span> Opening " + file + "…");
+    push("<span class='tag'>[OPEN]</span> Opening " + file + "… ( Find 7 digit numeric and 6 digit alphanumeric password");
     window.open(file, "_blank");
 }
 
